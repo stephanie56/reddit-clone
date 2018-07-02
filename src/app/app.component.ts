@@ -20,11 +20,19 @@ export class SidebarComponent {}
 @Component({
   selector: 'app-article',
   template: `
-  <article class="pv4 bt bb b--black-10 ph3 ph0-l">
-    <div class="w-100 w-60-ns pr3-ns order-2 order-1-ns">
-      <h1 class="f3 athelas mt0 lh-title">{{ article.title }}</h1>
-      <p class="f5 f4-l lh-copy athelas">{{ article.description }}</p>
-    </div>
+  <article class="bt bb b--black-10">
+      <div class="flex flex-column flex-row-ns">
+        <div class="pr3-ns mb4 mb0-ns w-100 w-40-ns">
+          <img src="http://mrmrs.github.io/photos/cpu.jpg" class="db" alt="Photo of a dimly lit room with a computer interface terminal.">
+        </div>
+        <div class="w-100 w-60-ns pl3-ns">
+          <h1 class="f3 fw1 baskerville mt0 lh-title">{{ article.title }}</h1>
+          <p class="f6 lh-copy mv0 silver">Votings go here</p>
+          <p class="f6 lh-copy mv0 silver">Today</p>
+          <p class="f6 f5-l lh-copy">{{ article.description }}</p>
+          <a class="f6 link br2 ph3 pv2 mb2 dib white bg-dark-blue" href="#0">Read More</a>
+        </div>
+      </div>
   </article>
   `
 })
