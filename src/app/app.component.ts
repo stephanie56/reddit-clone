@@ -1,5 +1,12 @@
 import { Component, Input } from '@angular/core';
 
+class Article {
+  constructor(
+    public title: string,
+    public description: string
+  ) { }
+}
+
 @Component ({
   selector: 'app-sidebar',
   template: `
@@ -20,7 +27,7 @@ export class SidebarComponent {}
   `
 })
 export class ArticleComponent {
-  @Input() article: Object;
+  @Input() article: Article;
 }
 
 @Component({
@@ -39,20 +46,21 @@ export class ArticleComponent {
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  articles: Object[];
+  articles: Article[];
 
   constructor() {
-    this.articles = [{
-      title: 'Trust, but Verify — Coerce Your Component Inputs',
-      description: 'In this article, I’d like to talk about the @angular/cdk/coercion package.'
-    },
-    {
-      title: 'Wait for Observable created from looping inside an Observable of type array?',
-      description: 'I use map to iterate through each Object and create another observable that will fetch something given an id in Object.'
-    },
-    {
-      title: 'How do I replace a list with an edit form without reloading the page?',
-      description: 'I am working on a simple proof of concept application in which I have a working component which calls a web service then renders a list of items. '
-    }
-  ]}
+    this.articles = [
+      new Article(
+        'Trust, but Verify — Coerce Your Component Inputs',
+        'In this article, I’d like to talk about the @angular/cdk/coercion package.'
+      ), 
+      new Article(
+        'Wait for Observable created from looping inside an Observable of type array?',
+        'I use map to iterate through each Object and create another observable that will fetch something given an id in Object.'
+      ), 
+      new Article(
+        'Trust, but Verify — Coerce Your Component Inputs',
+        'I am working on a simple proof of concept application in which I have a working component which calls a web service then renders a list of items.'
+      ),
+    ]}
 }
