@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 
 class Article {
+  public publishedAt: Date;
   constructor(
     public title: string,
     public description: string,
@@ -9,10 +10,19 @@ class Article {
   ) { 
     this.votes = votes || 0;
     this.imgUrl = imgUrl || 'http://mrmrs.github.io/photos/warehouse.jpg';
+    this.publishedAt = new Date();
   }
 
   public date(): Date {
     return new Date();
+  }
+
+  public voteUp(): void {
+    this.votes += 1;
+  }
+
+  public voteDown(): void {
+    this.votes -= 1;
   }
 }
 
@@ -38,10 +48,10 @@ export class SidebarComponent {}
           <h1 class="f3 fw1 baskerville mt0 lh-title">{{ article.title }}</h1>
           <a class="f6 link dim br3 ph3 pv2 mb2 dib white bg-green helvetica" href="#0"><i class="fa fa-heart pr3"></i>{{ article.votes }}</a>
           <span class="fr">
-            <a class="f6 near-black link dim br3 ph3 pv2 mb2 dib bg-light-gray helvetica mr1" href="#0"><i class="fa fa-arrow-up pr1"></i>Upvote</a>
-            <a class="f6 near-black link dim br3 ph3 pv2 mb2 dib bg-light-gray helvetica" href="#0"><i class="fa fa-arrow-down pr1"></i>Downvote</a>
+            <a (click)="upvote()" class="f6 near-black link dim br3 ph3 pv2 mb2 dib bg-light-gray helvetica mr1" href="#0"><i class="fa fa-arrow-up pr1"></i>Upvote</a>
+            <a (click)="downvote()" class="f6 near-black link dim br3 ph3 pv2 mb2 dib bg-light-gray helvetica" href="#0"><i class="fa fa-arrow-down pr1"></i>Downvote</a>
           </span>
-          <p class="f6 lh-copy mv0 silver helvetica">{{ article.date() | date:'medium' }}</p>
+          <p class="f6 lh-copy mv0 silver helvetica">{{ article.publishedAt | date:'medium' }}</p>
           <p class="f6 f5-l lh-copy">{{ article.description }}</p>
           <a class="f5 link br2 ph3 pv2 mb2 dib white bg-dark-blue helvetica" href="#0">Read More<i class="fa fa-angle-double-right pl1"></i></a>
         </div>
@@ -51,6 +61,14 @@ export class SidebarComponent {}
 })
 export class ArticleComponent {
   @Input() article: Article;
+
+  upvote(){
+    this.article.voteUp();
+  }
+
+  downvote(){
+    this.article.voteDown();
+  }
 }
 
 @Component({
