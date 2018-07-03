@@ -4,9 +4,11 @@ class Article {
   constructor(
     public title: string,
     public description: string,
-    public votes?: number
+    public votes?: number,
+    public imgUrl?: string
   ) { 
     this.votes = votes || 0;
+    this.imgUrl = imgUrl || 'http://mrmrs.github.io/photos/warehouse.jpg';
   }
 
   public date(): Date {
@@ -28,16 +30,16 @@ export class SidebarComponent {}
   selector: 'app-article',
   template: `
   <article class="bt bb b--black-10">
-      <div class="flex flex-column flex-row-ns">
+      <div class="flex items-center flex-column flex-row-ns">
         <div class="pr3-ns mb4 mb0-ns w-100 w-40-ns">
-          <img src="http://mrmrs.github.io/photos/cpu.jpg" class="db" alt="Photo of a dimly lit room with a computer interface terminal.">
+          <img [src]="article.imgUrl" class="db" alt="Photo of a dimly lit room with a computer interface terminal.">
         </div>
         <div class="w-100 w-40-ns pl3-ns">
           <h1 class="f3 fw1 baskerville mt0 lh-title">{{ article.title }}</h1>
           <a class="f6 link dim br3 ph3 pv2 mb2 dib white bg-green helvetica" href="#0"><i class="fa fa-heart pr3"></i>{{ article.votes }}</a>
           <span class="fr">
-            <a class="f6 silver link dim br3 ph3 pv2 mb2 dib bg-light-gray helvetica mr1" href="#0"><i class="fa fa-arrow-up pr1"></i>Upvote</a>
-            <a class="f6 silver link dim br3 ph3 pv2 mb2 dib bg-light-gray helvetica" href="#0"><i class="fa fa-arrow-down pr1"></i>Downvote</a>
+            <a class="f6 near-black link dim br3 ph3 pv2 mb2 dib bg-light-gray helvetica mr1" href="#0"><i class="fa fa-arrow-up pr1"></i>Upvote</a>
+            <a class="f6 near-black link dim br3 ph3 pv2 mb2 dib bg-light-gray helvetica" href="#0"><i class="fa fa-arrow-down pr1"></i>Downvote</a>
           </span>
           <p class="f6 lh-copy mv0 silver helvetica">{{ article.date() | date:'medium' }}</p>
           <p class="f6 f5-l lh-copy">{{ article.description }}</p>
@@ -74,15 +76,20 @@ export class AppComponent {
       new Article(
         'Trust, but Verify — Coerce Your Component Inputs',
         'In this article, I’d like to talk about the @angular/cdk/coercion package.',
-        5
+        5,
+        'http://mrmrs.github.io/photos/warehouse.jpg'
       ), 
       new Article(
         'Wait for Observable created from looping inside an Observable of type array?',
-        'I use map to iterate through each Object and create another observable that will fetch something given an id in Object.'
+        'I use map to iterate through each Object and create another observable that will fetch something given an id in Object.',
+        1,
+        'http://mrmrs.github.io/photos/cpu.jpg'
       ), 
       new Article(
         'Trust, but Verify — Coerce Your Component Inputs',
-        'I am working on a simple proof of concept application in which I have a working component which calls a web service then renders a list of items.'
+        'I am working on a simple proof of concept application in which I have a working component which calls a web service then renders a list of items.',
+        12,
+        'http://mrmrs.github.io/photos/whale.jpg'
       ),
     ]}
 }
