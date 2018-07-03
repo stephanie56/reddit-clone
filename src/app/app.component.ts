@@ -3,8 +3,15 @@ import { Component, Input } from '@angular/core';
 class Article {
   constructor(
     public title: string,
-    public description: string
-  ) { }
+    public description: string,
+    public votes?: number
+  ) { 
+    this.votes = votes || 0;
+  }
+
+  public date(): Date {
+    return new Date();
+  }
 }
 
 @Component ({
@@ -25,12 +32,16 @@ export class SidebarComponent {}
         <div class="pr3-ns mb4 mb0-ns w-100 w-40-ns">
           <img src="http://mrmrs.github.io/photos/cpu.jpg" class="db" alt="Photo of a dimly lit room with a computer interface terminal.">
         </div>
-        <div class="w-100 w-60-ns pl3-ns">
+        <div class="w-100 w-40-ns pl3-ns">
           <h1 class="f3 fw1 baskerville mt0 lh-title">{{ article.title }}</h1>
-          <p class="f6 lh-copy mv0 silver">Votings go here</p>
-          <p class="f6 lh-copy mv0 silver">Today</p>
+          <a class="f6 link dim br3 ph3 pv2 mb2 dib white bg-green helvetica" href="#0"><i class="fa fa-heart pr3"></i>{{ article.votes }}</a>
+          <span class="fr">
+            <a class="f6 silver link dim br3 ph3 pv2 mb2 dib bg-light-gray helvetica mr1" href="#0"><i class="fa fa-arrow-up pr1"></i>Upvote</a>
+            <a class="f6 silver link dim br3 ph3 pv2 mb2 dib bg-light-gray helvetica" href="#0"><i class="fa fa-arrow-down pr1"></i>Downvote</a>
+          </span>
+          <p class="f6 lh-copy mv0 silver helvetica">{{ article.date() | date:'medium' }}</p>
           <p class="f6 f5-l lh-copy">{{ article.description }}</p>
-          <a class="f6 link br2 ph3 pv2 mb2 dib white bg-dark-blue" href="#0">Read More</a>
+          <a class="f5 link br2 ph3 pv2 mb2 dib white bg-dark-blue helvetica" href="#0">Read More<i class="fa fa-angle-double-right pl1"></i></a>
         </div>
       </div>
   </article>
@@ -62,7 +73,8 @@ export class AppComponent {
     this.articles = [
       new Article(
         'Trust, but Verify — Coerce Your Component Inputs',
-        'In this article, I’d like to talk about the @angular/cdk/coercion package.'
+        'In this article, I’d like to talk about the @angular/cdk/coercion package.',
+        5
       ), 
       new Article(
         'Wait for Observable created from looping inside an Observable of type array?',

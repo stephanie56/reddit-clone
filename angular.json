@@ -28,7 +28,8 @@
             ],
             "styles": [
               "./node_modules/tachyons/css/tachyons.min.css",
-              "src/styles.scss"
+              "src/styles.scss",
+              "./node_modules/font-awesome/css/font-awesome.css"
             ],
             "scripts": []
           },
