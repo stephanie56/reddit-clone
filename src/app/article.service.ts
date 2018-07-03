@@ -1,7 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
+import 'rxjs/add/operator/toPromise';
 
 import { Article } from './article';
+
+const baseUrl = "https://newsapi.org";
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +15,14 @@ export class ArticleService {
     private http: Http
   ) { }
 
-  public getArticles() {
+  public getArticles(): Article[] {
+    this.http
+      .get(`${baseUrl}/v1/articles`)
+      .toPromise()
+      .then(res => res.json())
+      .then(data => {
+        console.log(data);
+      });
     return [
       new Article(
         'Trust, but Verify — Coerce Your Component Inputs',
