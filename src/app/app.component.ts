@@ -7,12 +7,4 @@ import { ArticleService } from './article.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
-  articles: Article[];
-
-  constructor(
-    private articleService: ArticleService
-  ) {
-    this.articles = articleService.getArticles();
-  }
-}
+export class AppComponent {}

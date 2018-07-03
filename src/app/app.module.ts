@@ -1,12 +1,11 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { ArticleComponent } from './article/article.component';
 import { ArticleListComponent } from './article-list/article-list.component';
-
-import { ArticleService } from './article.service';
 
 @NgModule({
   declarations: [
@@ -17,10 +16,9 @@ import { ArticleService } from './article.service';
   ],
   imports: [
     BrowserModule,
+    HttpModule
   ],
-  providers: [
-    ArticleService
-  ],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

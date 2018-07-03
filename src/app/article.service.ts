@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Http } from '@angular/http';
 
 import { Article } from './article';
 
@@ -7,7 +8,9 @@ import { Article } from './article';
 })
 export class ArticleService {
 
-  constructor() { }
+  constructor(
+    private http: Http
+  ) { }
 
   public getArticles() {
     return [
